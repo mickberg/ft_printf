@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:44:09 by mikaelber         #+#    #+#             */
-/*   Updated: 2019/12/18 14:56:42 by mikaelber        ###   ########.fr       */
+/*   Updated: 2019/12/18 18:47:08 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Convert alphanumeric number to decimal number
 */
-char	to_alphnum(int n)
+static char	to_alphnum(int n)
 {
 	if (n < 10)
 		return (n + 48);
@@ -34,26 +34,54 @@ static int	to_num(char c)
 {
 	if (c >= 65)
 		return (10 + (c - 65));
-	else 
+	else
 		return (c - 48);
 }
 
-void		base_convert(char *num, int frombase, int tobase)
+static int	num_len(long num, int base)
 {
-	int		dec;
+	//printf("getting length of %lu in base %d\n", num, base);
+	int	len;
+
+	len = 0;
+	if (num == 0)
+		len = 1;
+	while (num > 0)
+	{
+		++len;
+		num = num / base;
+	}
+	return (len);
+}
+
+void		base_convert(char *numstr, int frombase, int tobase)
+{
+	//printf("Converting %s, from %d base to %d base\n", numstr, frombase, tobase);
+	long	num;
 	int		i;
 	int		len;
+	char	*conv_str;
 
-	tobase = 0;
-
-	len = ft_strlen(num);
-	dec = 0;
+	len = ft_strlen(numstr);
+	num = 0;
 	i = 0;
 	while (i++ < len)
-		dec += to_num(num[i - 1]) * ft_pow(frombase, len - i);
+		num += to_num(numstr[i - 1]) * ft_pow(frombase, len - i);
+	len = num_len(num, tobase);
+	//printf("len: %d\n", len);
+	conv_str = ft_strnew(len);
+	if (num == 0)
+		conv_str[0] = '0';
+	i = 0;
+	while (num > 0)
+	{
+		char c = to_alphnum(num % tobase);
+		conv_str[len - 1] = c;
+		--len;
+		num /= tobase;
+	}
 
-
-	printf("%d\n", dec);
+	printf("%s", conv_str);
 }
 
 /*
@@ -72,7 +100,7 @@ char		*base_convert(char *num, int frombase, int tobase)
 		num /= 10;
 		++base;
 	}
-	
+
 	base = 0;
 	while (res > 0)
 	{
@@ -81,7 +109,7 @@ char		*base_convert(char *num, int frombase, int tobase)
 		printstr[base] = get_printchar(tmp);
 		printf("str %s\n", printstr);
 		res /= 10;
-		++base;	
+		++base;
 	}
 
 	return (printstr);
