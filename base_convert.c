@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:44:09 by mikaelber         #+#    #+#             */
-/*   Updated: 2019/12/18 18:47:08 by mberglun         ###   ########.fr       */
+/*   Updated: 2019/12/19 16:26:34 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ static int	to_num(char c)
 		return (c - 48);
 }
 
-static int	num_len(long num, int base)
+static int	num_len(unsigned long num, int base)
 {
-	//printf("getting length of %lu in base %d\n", num, base);
 	int	len;
 
 	len = 0;
@@ -56,11 +55,10 @@ static int	num_len(long num, int base)
 
 void		base_convert(char *numstr, int frombase, int tobase)
 {
-	//printf("Converting %s, from %d base to %d base\n", numstr, frombase, tobase);
-	long	num;
-	int		i;
-	int		len;
-	char	*conv_str;
+	unsigned long	num;
+	int				i;
+	int				len;
+	char			*conv_str;
 
 	len = ft_strlen(numstr);
 	num = 0;
@@ -68,7 +66,6 @@ void		base_convert(char *numstr, int frombase, int tobase)
 	while (i++ < len)
 		num += to_num(numstr[i - 1]) * ft_pow(frombase, len - i);
 	len = num_len(num, tobase);
-	//printf("len: %d\n", len);
 	conv_str = ft_strnew(len);
 	if (num == 0)
 		conv_str[0] = '0';
