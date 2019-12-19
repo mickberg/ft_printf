@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2019/12/13 14:56:28 by mikaelber        ###   ########.fr        #
+#    Updated: 2019/12/19 21:23:09 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = printf
 
 # Directories, library
-SRC_DIR = ./
-OBJ_DIR = objs/
+SRC_DIR = ./srcs/
+OBJ_DIR = ./objs/
 LIB_DIR = ./libft/
 LIB = $(LIB_DIR)libft.a
 
