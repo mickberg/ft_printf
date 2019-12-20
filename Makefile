@@ -6,13 +6,13 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2019/12/19 21:23:09 by mikaelber        ###   ########.fr        #
+#    Updated: 2019/12/21 00:16:47 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-NAME = printf
+NAME = ft_printf
 
 # Directories, library
 SRC_DIR = ./srcs/
