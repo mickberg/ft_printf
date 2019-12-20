@@ -2,4 +2,4 @@
 *.swp
 *tmp
 objs/
-printf
+ft_printf
