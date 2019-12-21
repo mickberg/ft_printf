@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:57:49 by mikaelber         #+#    #+#             */
-/*   Updated: 2019/12/18 14:41:15 by mikaelber        ###   ########.fr       */
+/*   Updated: 2019/12/21 02:40:18 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-void	base_convert(char *num, int frombase, int tobase);
+char	*base_convert(char *numstr, int frombase, int tobase);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:44:09 by mikaelber         #+#    #+#             */
-/*   Updated: 2019/12/19 16:26:34 by mikaelber        ###   ########.fr       */
+/*   Updated: 2019/12/21 02:41:36 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	num_len(unsigned long num, int base)
 	return (len);
 }
 
-void		base_convert(char *numstr, int frombase, int tobase)
+char		*base_convert(char *numstr, int frombase, int tobase)
 {
 	unsigned long	num;
 	int				i;
@@ -78,37 +78,5 @@ void		base_convert(char *numstr, int frombase, int tobase)
 		num /= tobase;
 	}
 
-	printf("%s", conv_str);
+	return (conv_str);
 }
-
-/*
-char		*base_convert(char *num, int frombase, int tobase)
-{
-	int		base;
-	int		res;
-	char	*printstr;
-
-	printstr = ft_strnew(100);
-	res = 0;
-	base = 0;
-	while (num > 0)
-	{
-		res += (num % 10) * ft_pow(frombase, base);
-		num /= 10;
-		++base;
-	}
-
-	base = 0;
-	while (res > 0)
-	{
-		int tmp = (res % tobase);
-		printf("tmp %d,  ", tmp);
-		printstr[base] = get_printchar(tmp);
-		printf("str %s\n", printstr);
-		res /= 10;
-		++base;
-	}
-
-	return (printstr);
-}
-*/

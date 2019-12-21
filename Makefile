@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2019/12/21 00:16:47 by mikaelber        ###   ########.fr        #
+#    Updated: 2019/12/21 02:41:08 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ $(LIB):
 	make -C $(LIB_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(LIB_DIR) -L./libft/ -lft
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(LIB_DIR) -L./libft/ -lft -I ./
 
 $(OBJS): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) -c $< -g -o $@ -I $(LIB_DIR)
+	$(CC) $(CFLAGS) -c $< -g -o $@ -I $(LIB_DIR) -I ./
 
 clean:
 	-rm -rf $(OBJ_DIR)
