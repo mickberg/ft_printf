@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parse_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/13 14:56:35 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/22 19:08:57 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/17 09:25:42 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/17 11:43:48 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf(t_format *info, const char *format, ...)			
+void	parse_width(t_format *info, const char *format, int *pos)
 {
-	int			pos;
-	va_list		ap;
-
-	va_start(ap, format);
-
-	pos = 0;
-	parse_format(info, format, &pos);
-	if (info->specifier == spec_none)
-		return ;
+	char	*str;
+	
+	str = (char*)format + (*pos);
+	if (ft_isdigit(*str))
+		parse_number(format, pos, &(info->width));
 }

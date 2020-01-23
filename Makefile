@@ -6,48 +6,54 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2019/12/21 02:41:08 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/17 15:32:19 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-NAME = ft_printf
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror
+NAME := ft_printf
 
 # Directories, library
-SRC_DIR = ./srcs/
-OBJ_DIR = ./objs/
-LIB_DIR = ./libft/
-LIB = $(LIB_DIR)libft.a
+SRC_DIR := ./srcs/
+OBJ_DIR := ./objs/
+LIB_DIR := ./libft/
+INC_DIR := ./includes/ 
+
+# libft archive file name
+LIB := ft
 
 # Files, library
-SRC_FILES = ft_printf.c base_convert.c
-SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
-OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
-MKDIR_P = mkdir -p
+SRC_FILES := \
+	main.c \
+	ft_printf.c \
+	parse/parse.c \
+	parse/parse_flags.c \
+	parse/parse_width.c \
+	parse/parse_precision.c \
+	parse/parse_length.c \
+	parse/parse_specifier.c \
+	parse/parse_number.c
 
-all: dirs $(LIB) $(NAME)
+SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
+OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
+
+all: $(LIB) $(NAME)
 
 $(LIB):
-	make -C $(LIB_DIR)
+	@make -C $(LIB_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(LIB_DIR) -L./libft/ -lft -I ./
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME} -I ${INC_DIR} -I ${LIB_DIR} -L${LIB_DIR} -l${LIB}
 
-$(OBJS): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) -c $< -g -o $@ -I $(LIB_DIR) -I ./
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -g -o $@ -I ${INC_DIR} -I ${LIB_DIR}
 
 clean:
-	-rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	-rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
-
-# Creates necessary directories as needed, ex. for objects.
-dirs: $(OBJ_DIR)
-
-$(OBJ_DIR):
-	$(MKDIR_P) $(OBJ_DIR)
-#end of file
