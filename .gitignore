@@ -4,3 +4,7 @@
 objs/
 ft_printf
 *.test
+
+tags
+
+main.c
