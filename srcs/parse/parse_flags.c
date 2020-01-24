@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 09:02:41 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/17 11:39:55 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/23 23:29:42 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	parse_flags(t_format *info, const char *format, int *pos)
 		else
 			break;
 		(*pos)++;
-		str += *pos;
+		++str;
 	}
 }

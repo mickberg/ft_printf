@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/17 15:32:19 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/24 13:35:38 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME := ft_printf
 SRC_DIR := ./srcs/
 OBJ_DIR := ./objs/
 LIB_DIR := ./libft/
-INC_DIR := ./includes/ 
+INC_DIR := ./includes/
 
 # libft archive file name
 LIB := ft
@@ -33,7 +33,16 @@ SRC_FILES := \
 	parse/parse_precision.c \
 	parse/parse_length.c \
 	parse/parse_specifier.c \
-	parse/parse_number.c
+	parse/parse_number.c \
+	format/format_router.c \
+	format/format_width.c \
+	format/format_precision.c \
+	specs/format_int.c \
+	specs/format_hex.c \
+	specs/format_perc.c \
+	args/number_arguments.c \
+	utils/ft_itos.c \
+	utils/base_conversion.c
 
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
 OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

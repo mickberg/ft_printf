@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   format_width.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 08:25:58 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 20:10:20 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/24 09:59:50 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/24 18:48:32 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-# include <stdio.h>
 
-int		parse_format(t_format *info, const char *format, int *pos)
+void		format_int_width(t_format *info, t_output *out)
 {
-	parse_flags(info, format, pos);
-	parse_width(info, format, pos);
-	parse_precision(info, format, pos);
-	parse_length(info, format, pos);
-	parse_specifier(info, format, pos);
+	char	padc;
 
-	if (info->specifier == spec_none)
-		return (0);
-	return (0);
+	padc = ' ';
+	if (info->flags & FLAG_ZERO && !(info->flags & FLAG_MINUS))
+		padc = '0';
+	ft_memset(out->string, padc, out->len);
 }

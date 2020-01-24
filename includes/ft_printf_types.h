@@ -6,26 +6,35 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 07:54:13 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/17 18:00:05 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/24 10:36:36 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_TYPES_H
 # define FT_PRINTF_TYPES_H
 
+/*
+** structs and enum typedefs
+*/
 typedef struct s_format		t_format;
 typedef struct s_output		t_output;
 typedef enum e_length		t_len;
 typedef enum e_spec			t_spec;
 
 /*
+** Native types short hands
+*/
+typedef long long			t_64;
+typedef unsigned long long	t_u64;
+
+/*
 ** Flags, defined in bits because not all flags are exlusive
 */
 # define FLAG_MINUS			0x01
 # define FLAG_PLUS			0x02
-# define FLAG_POUND			0x08
-# define FLAG_ZERO			0x10
-# define FLAG_SPACE			0x20
+# define FLAG_POUND			0x04
+# define FLAG_ZERO			0x08
+# define FLAG_SPACE			0x10
 
 /*
 ** length
@@ -37,7 +46,8 @@ enum						e_length
 	len_short,
 	len_long,
 	len_longlong,
-	len_longdouble
+	len_longdouble,
+	len_ptr
 };
 
 /*
@@ -66,15 +76,15 @@ struct						s_format
 	char		flags;
 	int			width;
 	int			precision;
+	int			has_precision;
 	t_len		length;
 	t_spec		specifier;
 };
 
 struct						s_output
 {
-	void		*arg;
 	char		*string;
-	size_t		size;
+	size_t		len;
 };
 
 #endif

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_itos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 08:25:58 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 20:10:20 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/23 21:30:19 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/23 23:12:44 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-# include <stdio.h>
 
-int		parse_format(t_format *info, const char *format, int *pos)
+void		ft_itos(long long num, char *dest)
 {
-	parse_flags(info, format, pos);
-	parse_width(info, format, pos);
-	parse_precision(info, format, pos);
-	parse_length(info, format, pos);
-	parse_specifier(info, format, pos);
+	int		lix;
+	int		i;
 
-	if (info->specifier == spec_none)
-		return (0);
-	return (0);
+	i = 0;
+	lix = ft_intlen(num) - 1;
+	while (num != 0) 	
+	{
+		dest[lix - i] = ft_abs(num % 10) + '0';
+		++i;
+		num /= 10;
+	}
 }

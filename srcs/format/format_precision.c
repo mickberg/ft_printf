@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   format_precision.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 08:25:58 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 20:10:20 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/24 09:43:34 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/24 19:25:40 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-# include <stdio.h>
 
-int		parse_format(t_format *info, const char *format, int *pos)
+void		format_int_precision(t_format *info, char *out, t_64 arg)
 {
-	parse_flags(info, format, pos);
-	parse_width(info, format, pos);
-	parse_precision(info, format, pos);
-	parse_length(info, format, pos);
-	parse_specifier(info, format, pos);
+	ft_memset(out, '0', info->precision);
 
-	if (info->specifier == spec_none)
-		return (0);
-	return (0);
+	// add prefix
+	if (info->flags & FLAG_POUND)
+	{
+		if (info->specifier == spec_hex)
+			ft_strncpy(out, "0x", 2);
+		else if (info->specifier == spec_hexup)
+			ft_strncpy(out, "0X", 2);
+	}
+	else if (info->flags & FLAG_PLUS && arg >= 0)
+		*out = '+';
+	else if (arg < 0)
+		*out = '-';
+	else if (info->flags & FLAG_SPACE)
+		*out = ' ';
 }
