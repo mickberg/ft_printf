@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 21:47:37 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 23:02:05 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_printf(const char *format, ...);
 /*
 ** Parsing
 */
-int			parse_format(t_format *info, const char *format, int *pos);
+void		parse_format(t_format *info, const char *format, int *pos);
 void		parse_flags(t_format *info, const char *format, int *pos);
 void		parse_width(t_format *info, const char *format, int *pos);
 void		parse_precision(t_format *info, const char *format, int *pos);

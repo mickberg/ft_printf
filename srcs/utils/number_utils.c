@@ -1,16 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   number_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 23:20:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 20:48:54 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/27 23:08:36 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/27 23:13:10 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+t_u64		ft_iabs(t_64 num)
+{
+	if (num < 0)
+		return ((t_u64)(num * -1));
+	return (num);
+}
+
+t_f128		ft_fabs(t_f128 num)
+{
+	if (num < 0)
+		return ((t_f128)(num * -1));
+	return (num);
+}
+
+void		ft_itos(long long num, char *dest)
+{
+	int		lix;
+	int		i;
+
+	i = 0;
+	lix = ft_intlen(num) - 1;
+	while (num != 0)
+	{
+		dest[lix - i] = ft_abs(num % 10) + '0';
+		++i;
+		num /= 10;
+	}
+}
 
 static int	decimals_to_str(long double num, char *dest, int ilen, int precision)
 {

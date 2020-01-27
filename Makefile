@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/27 22:36:58 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/27 23:14:44 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,21 +34,20 @@ SRC_FILES := \
 	parse/parse_length.c \
 	parse/parse_specifier.c \
 	parse/parse_number.c \
-	format/format_router.c \
-	format/format_width.c \
-	format/format_precision.c \
-	specs/format_int.c \
-	specs/format_uint.c \
-	specs/format_hex.c \
-	specs/format_ptr.c \
-	specs/format_octal.c \
-	specs/format_float.c \
-	specs/format_char.c \
-	specs/format_str.c \
-	specs/format_perc.c \
-	args/number_arguments.c \
-	utils/ft_itos.c \
-	utils/ft_ftoa.c \
+	formatters/format_router.c \
+	formatters/format_width.c \
+	formatters/format_precision.c \
+	formatters/format_int.c \
+	formatters/format_uint.c \
+	formatters/format_hex.c \
+	formatters/format_ptr.c \
+	formatters/format_octal.c \
+	formatters/format_float.c \
+	formatters/format_char.c \
+	formatters/format_str.c \
+	formatters/format_perc.c \
+	utils/number_arguments.c \
+	utils/number_utils.c \
 	utils/base_conversion.c
 
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
@@ -64,8 +63,8 @@ $(NAME): $(OBJS) $(FTLIB)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-test: $(NAME) $(SRC_DIR)main.c
-	$(CC) $(CFLAGS) -o printf_test $(SRC_DIR)main.c -I$(LIB_DIR) -I $(INC_DIR) -L./ -lftprintf
+test: $(NAME) tests/main.c
+	$(CC) $(CFLAGS) -o printf_test tests/main.c -I$(LIB_DIR) -I $(INC_DIR) -L./ -lftprintf
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)

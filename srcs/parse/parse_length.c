@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 09:02:41 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 19:41:50 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 23:05:34 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parse_length(t_format *info, const char *format, int *pos)
 {
 	char *str;
-	
+
 	str = (char*)format + (*pos);
 	if (!ft_strncmp(str, "ll", 2))
 		info->length = len_longlong;

@@ -6,25 +6,11 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:22:26 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 20:36:00 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 23:08:55 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-t_u64		ft_iabs(t_64 num)
-{
-	if (num < 0)
-		return ((t_u64)(num * -1));
-	return (num);
-}
-
-t_f128		ft_fabs(t_f128 num)
-{
-	if (num < 0)
-		return ((t_f128)(num * -1));
-	return (num);
-}
 
 static char	to_alphnum(unsigned int num, int upper)
 {
