@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/27 21:12:07 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/27 21:32:27 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC_FILES := \
 	specs/format_octal.c \
 	specs/format_float.c \
 	specs/format_char.c \
+	specs/format_str.c \
 	specs/format_perc.c \
 	args/number_arguments.c \
 	utils/ft_itos.c \

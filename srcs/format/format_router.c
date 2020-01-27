@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 17:47:34 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 21:11:19 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 21:32:10 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void		(*format_router(t_format *info))(t_format*, t_output*, va_list ap)
 	funcs[5] = format_hex;
 	funcs[6] = format_float;
 	funcs[7] = format_char;
-	/*
 	funcs[8] = format_str;
-	*/
 	funcs[9] = format_ptr;
 	funcs[10] = format_perc;
 
