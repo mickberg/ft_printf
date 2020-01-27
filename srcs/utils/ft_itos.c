@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 21:30:19 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 23:12:44 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 20:08:55 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_itos(long long num, char *dest)
 
 	i = 0;
 	lix = ft_intlen(num) - 1;
-	while (num != 0) 	
+	while (num != 0)
 	{
 		dest[lix - i] = ft_abs(num % 10) + '0';
 		++i;

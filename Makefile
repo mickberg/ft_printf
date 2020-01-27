@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/24 13:35:38 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/27 18:29:57 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,15 @@ SRC_FILES := \
 	format/format_width.c \
 	format/format_precision.c \
 	specs/format_int.c \
+	specs/format_uint.c \
 	specs/format_hex.c \
+	specs/format_ptr.c \
+	specs/format_octal.c \
+	specs/format_float.c \
 	specs/format_perc.c \
 	args/number_arguments.c \
 	utils/ft_itos.c \
+	utils/ft_ftoa.c \
 	utils/base_conversion.c
 
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))

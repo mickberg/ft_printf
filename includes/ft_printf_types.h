@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 07:54:13 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/24 10:36:36 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/24 22:15:49 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef enum e_spec			t_spec;
 */
 typedef long long			t_64;
 typedef unsigned long long	t_u64;
+typedef long double			t_f128;
 
 /*
 ** Flags, defined in bits because not all flags are exlusive

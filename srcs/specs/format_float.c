@@ -1,54 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_ptr.c                                       :+:      :+:    :+:   */
+/*   format_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 20:47:03 by mikaelber        ###   ########.fr       */
+/*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
+/*   Updated: 2020/01/27 20:46:36 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	output_len(t_format *info, int intlen)
+static void	output_len(t_format *info, int intlen, int neg)
 {
 	// precision length
 	if (intlen > info->precision)
 		info->precision = intlen;
-	if (info->flags & FLAG_POUND)
-		info->precision += 2;
+	if(info->flags & FLAG_PLUS || info->flags & FLAG_SPACE || neg)
+		info->precision += 1;
 
 	// width length
 	if (info->width < info->precision)
 		info->width = info->precision;
 }
 
-void		format_ptr(t_format *info, t_output *out, va_list ap)
+void		format_float(t_format *info, t_output *out, va_list ap)
 {
-	t_u64	arg;
-	int		intlen;
-	int		start;
-	char	*str;
+	t_f128		arg;
+	int			intlen;
+	int			start;
+	char		*str;
 
 	// unset flags
-	info->flags &= ~(FLAG_PLUS | FLAG_SPACE);
-	// set flags
-	info->flags |= (FLAG_POUND);
-	// set length
-	info->length = len_long;
+	info->flags &= ~(FLAG_POUND);
+	if (!info->has_precision)
+		info->precision = 6;
 	// get argument
-	arg = number_argument_unsigned(info->length, ap);
-	str = base_conversion(arg, 16, info->specifier == spec_hexup);
+	arg = float_argument_signed(info->length, ap);
+	if (info->has_precision && info->precision == 0)
+		str = base_conversion(ft_iabs(arg), 10, 0);
+	else
+		str = ft_ftoa(ft_fabs(arg), info->precision);
 
-	if (arg == 0)
-		info->flags &= ~FLAG_POUND;
 	// arg length
 	intlen = ft_strlen(str);
 
 	// output length
-	output_len(info, intlen);
+	output_len(info, intlen, arg < 0);
 	out->len = info->width;
 	out->string = ft_strnew(info->width);
 

@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:44:50 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/23 19:55:40 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/24 22:19:02 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ t_u64		number_argument_unsigned(t_len lflag, va_list ap)
 		num = (unsigned int)va_arg(ap, unsigned int);
 	return (num);
 
+}
+
+t_f128	float_argument_signed(t_len lflag, va_list ap)
+{
+	t_f128		num;
+
+	if (lflag == len_long)
+		num = (double)va_arg(ap, double);
+	else if (lflag == len_longdouble)
+		num = (t_f128)va_arg(ap, t_f128);
+	else
+		num = (float)va_arg(ap, double);
+	return (num);
 }

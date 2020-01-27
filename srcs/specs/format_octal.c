@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_ptr.c                                       :+:      :+:    :+:   */
+/*   format_octal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 20:47:03 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 20:46:52 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	output_len(t_format *info, int intlen)
 	if (intlen > info->precision)
 		info->precision = intlen;
 	if (info->flags & FLAG_POUND)
-		info->precision += 2;
+		info->precision += 1;
 
 	// width length
 	if (info->width < info->precision)
 		info->width = info->precision;
 }
 
-void		format_ptr(t_format *info, t_output *out, va_list ap)
+void		format_octal(t_format *info, t_output *out, va_list ap)
 {
 	t_u64	arg;
 	int		intlen;
@@ -34,13 +34,9 @@ void		format_ptr(t_format *info, t_output *out, va_list ap)
 
 	// unset flags
 	info->flags &= ~(FLAG_PLUS | FLAG_SPACE);
-	// set flags
-	info->flags |= (FLAG_POUND);
-	// set length
-	info->length = len_long;
 	// get argument
 	arg = number_argument_unsigned(info->length, ap);
-	str = base_conversion(arg, 16, info->specifier == spec_hexup);
+	str = base_conversion(arg, 8, info->specifier == spec_hexup);
 
 	if (arg == 0)
 		info->flags &= ~FLAG_POUND;

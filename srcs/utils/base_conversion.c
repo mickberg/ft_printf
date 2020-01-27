@@ -6,16 +6,23 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:22:26 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/24 19:37:04 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 20:36:00 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_u64		iabs(t_64 num)
+t_u64		ft_iabs(t_64 num)
 {
 	if (num < 0)
 		return ((t_u64)(num * -1));
+	return (num);
+}
+
+t_f128		ft_fabs(t_f128 num)
+{
+	if (num < 0)
+		return ((t_f128)(num * -1));
 	return (num);
 }
 
@@ -25,14 +32,14 @@ static char	to_alphnum(unsigned int num, int upper)
 		return (num + '0');
 	else if (upper)
 		return ((num - 10) + 'A');
-	else 
+	else
 		return ((num - 10) + 'a');
 }
 
 static int	base_len(t_u64 num, int tobase)
 {
 	int len;
-	
+
 	len = 1;
 	while (num /= tobase)
 		++len;

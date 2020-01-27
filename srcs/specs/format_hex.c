@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/24 19:22:45 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 20:46:08 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	output_len(t_format *info, int intlen)
 	if (info->flags & FLAG_POUND)
 		info->precision += 2;
 
-	// width length	
+	// width length
 	if (info->width < info->precision)
-		info->width = info->precision; 
+		info->width = info->precision;
 }
 
 void		format_hex(t_format *info, t_output *out, va_list ap)
@@ -40,20 +40,21 @@ void		format_hex(t_format *info, t_output *out, va_list ap)
 
 	if (arg == 0)
 		info->flags &= ~FLAG_POUND;
-	// arg length	
+	// arg length
 	intlen = ft_strlen(str);
 
 	// output length
 	output_len(info, intlen);
 	out->len = info->width;
 	out->string = ft_strnew(info->width);
+
 	// start offset
 	start = info->width - info->precision;
 	if (info->flags & FLAG_MINUS)
 		start = 0;
-	
+
 	// format output
 	format_int_width(info, out);
-	format_int_precision(info, out->string + start, arg);
+	format_int_precision(info, out->string + start, arg < 0);
 	ft_strncpy(out->string + (start + info->precision - intlen), str, intlen);
 }
