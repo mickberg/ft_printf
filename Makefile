@@ -6,13 +6,13 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/27 21:32:27 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/01/27 22:36:58 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
-NAME := ft_printf
+NAME := libftprintf.a
 
 # Directories, library
 SRC_DIR := ./srcs/
@@ -22,10 +22,10 @@ INC_DIR := ./includes/
 
 # libft archive file name
 LIB := ft
+FTLIB := $(LIB_DIR)libft.a
 
 # Files, library
 SRC_FILES := \
-	main.c \
 	ft_printf.c \
 	parse/parse.c \
 	parse/parse_flags.c \
@@ -54,13 +54,18 @@ SRC_FILES := \
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
 OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
-all: $(LIB) $(NAME)
+all: $(NAME)
 
-$(LIB):
+$(FTLIB):
 	@make -C $(LIB_DIR)
 
-$(NAME): $(OBJS)
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME} -I ${INC_DIR} -I ${LIB_DIR} -L${LIB_DIR} -l${LIB}
+$(NAME): $(OBJS) $(FTLIB)
+	@cp $(FTLIB) ./$(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+
+test: $(NAME) $(SRC_DIR)main.c
+	$(CC) $(CFLAGS) -o printf_test $(SRC_DIR)main.c -I$(LIB_DIR) -I $(INC_DIR) -L./ -lftprintf
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
