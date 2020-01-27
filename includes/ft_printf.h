@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 20:47:39 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/01/27 21:11:40 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	format_hex(t_format *info, t_output *out, va_list ap);
 void	format_ptr(t_format *info, t_output *out, va_list ap);
 void	format_octal(t_format *info, t_output *out, va_list ap);
 void	format_float(t_format *info, t_output *out, va_list ap);
+void	format_char(t_format *info, t_output *out, va_list ap);
 void	format_perc(t_format *info, t_output *out, va_list ap);
 
 /*
