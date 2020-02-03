@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:45:57 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 21:54:40 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	format_perc(t_format *info, t_output *out, va_list ap);
 void	ft_itos(long long num, char *dest);
 t_u64	ft_iabs(t_64 num);
 t_f128	ft_fabs(t_f128 num);
-char	*ft_ftoa(t_f128 num, int precision);
+char	*ft_ftoa(t_f128 num, int precision, int print_p);
 char	*base_conversion(t_u64 num, int tobase, int upper, int precision);
 
 #endif

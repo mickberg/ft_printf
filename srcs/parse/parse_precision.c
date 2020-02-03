@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 09:25:42 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 16:15:27 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 22:04:04 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	parse_precision(t_format *info, const char *format, int *pos, va_list ap)
 		{
 			arg = (int)va_arg(ap, int);
 			if (arg < 0)
-				info->precision = 1;
-			info->precision = ft_max(info->precision, arg);
-
+				info->has_precision = 0;
+			else
+				info->precision = ft_max(info->precision, arg);
 			(*pos)++;
 		}
 		else

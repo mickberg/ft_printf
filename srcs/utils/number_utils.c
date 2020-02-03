@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:08:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:07:13 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 22:42:32 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,49 +43,35 @@ void		ft_itos(long long num, char *dest)
 
 static int	decimals_to_str(t_f128 num, char *dest, int precision)
 {
-	int		ix;
-	int		tmp;
+	t_u64	dnum;
+	char	*str;
 
-/*
-	printf("@%Lf\n", num);
-	printf("Long\t\tfloat\t\tint\ti+.01\ttmp\n\n");
-//*/
-
-	ix = 0;
-	while (ix < precision)
-	{
-		num *= 10;
-		tmp = (int)num;
-		if (tmp < 9)
-			tmp = (int)(num + 0.01);
-		//printf(">%Lf\t%f\t%d\t%d\t%d\n", num, (float)num, (int)num, (int)(num + 0.01), tmp);
-		dest[ix] = (char)(tmp + 48);
-		num -= tmp;
-		++ix;
-	}
-	return (0);
+	dnum = num * ft_pow(10, precision + 1);
+	if ((int)(dnum % 10) >= 5)
+		dnum += 10;
+	dnum /= 10;
+	str = base_conversion(dnum % (t_u64)ft_pow(10, precision), 10, 0, precision);
+	if (!str)
+		return (0);
+	ft_strncpy(dest, str, precision);
+	free(str);
+	return (dnum / (t_u64)ft_pow(10, precision));
 }
 
-char	*ft_ftoa(t_f128 num, int precision)
+char	*ft_ftoa(t_f128 num, int precision, int print_p)
 {
-	int		intlen;
-	t_f128	decimals;
-	char	fstr[precision];
+	int		strlen;
 	char	*numstr;
 
-	intlen = ft_intlen(num);
-	decimals = num - ((long)num % (long)ft_pow(10, intlen));
-	num += decimals_to_str(decimals, fstr, precision);
-	if (precision == 0 && (int)(decimals * 10) % 10 > 4)
-		num += 1;
-	intlen = ft_intlen(num);
-	if (!(numstr = ft_strnew(intlen + 1 + precision)))
+	strlen = ft_intlen(num) + precision;
+	if (precision || print_p)
+		++strlen;
+	if (!(numstr = ft_strnew(strlen)))
 		return (NULL);
-	ft_itos((long)num, numstr);
-	if(num < 1 && num > -1)
-		numstr[0] = '0';
-	if (precision > 0)
-		numstr[intlen] = '.';
-	ft_strncpy(numstr + intlen + 1, fstr, precision);
+	num += decimals_to_str(num - (t_u64)num, numstr + (strlen - precision), precision);
+	numstr[0] = '0';
+	ft_itos((t_u64)num, numstr);
+	if (precision || print_p)
+		numstr[ft_intlen((t_u64)num)] = '.';
 	return (numstr);
 }
