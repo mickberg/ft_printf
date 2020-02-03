@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 03:45:43 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:07:39 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void		format_octal(t_format *info, t_output *out, va_list ap)
 		info->precision = 1;
 	// get argument
 	arg = number_argument_unsigned(info->length, ap);
-	argstr = base_conversion(arg, 8, info->specifier == spec_hexup, info->precision);
-
+	if (!(argstr = base_conversion(arg, 8, info->specifier == spec_hexup, info->precision)))
+		return ;
 	ft_memset(prefix, 0, 2);
 	if (info->flags & FLAG_POUND)
 		prefix[0] = '0';
-
 	format_width(info, out, argstr, prefix);
+	free(argstr);
 }

@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:22:28 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/17 12:36:58 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:49:34 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_spec		get_spec(char c)
 	specs['s'] = spec_str;
 	specs['p'] = spec_ptr;
 	specs['%'] = spec_perc;
+	specs['b'] = spec_bin;
 	return (specs[(int)c]);
 }
 

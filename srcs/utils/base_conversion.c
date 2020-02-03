@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:22:26 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/02 23:41:37 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:24:48 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*base_conversion(t_u64 num, int tobase, int upper, int precision)
 	char	*res;
 
 	baselen = ft_max(base_len(num, tobase), precision);
-	res = ft_strnew(baselen);
+	if(!(res = ft_strnew(baselen)))
+		return (NULL);
 	while (baselen--)
 	{
 		char c = to_alphnum(num % tobase, upper);

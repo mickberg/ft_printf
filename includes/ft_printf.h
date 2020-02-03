@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 05:32:07 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:45:57 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,21 @@ int			ft_printf(const char *format, ...);
 /*
 ** Parsing
 */
-void		parse_format(t_format *info, const char *format, int *pos);
+void		parse_format(t_format *info, const char *format, int *pos, va_list ap);
 void		parse_flags(t_format *info, const char *format, int *pos);
-void		parse_width(t_format *info, const char *format, int *pos);
-void		parse_precision(t_format *info, const char *format, int *pos);
+void		parse_width(t_format *info, const char *format, int *pos, va_list ap);
+void		parse_precision(t_format *info, const char *format, int *pos, va_list ap);
 void		parse_length(t_format *info, const char *format, int *pos);
 void		parse_specifier(t_format *info, const char *format, int *pos);
 void		parse_number(const char *format, int *pos, int *num);
+void		format_bin(t_format *info, t_output *out, va_list ap);
 
 /*
 ** Arguments
 */
 t_64	number_argument_signed(t_len lflag, va_list ap);
 t_u64	number_argument_unsigned(t_len lflag, va_list ap);
-long double	float_argument_signed(t_len lflag, va_list ap);
+t_f128	float_argument_signed(t_len lflag, va_list ap);
 
 /*
 ** General Formatting
@@ -69,8 +70,8 @@ void	format_perc(t_format *info, t_output *out, va_list ap);
 */
 void	ft_itos(long long num, char *dest);
 t_u64	ft_iabs(t_64 num);
-long double	ft_fabs(long double num);
-char	*ft_ftoa(long double num, int precision);
+t_f128	ft_fabs(t_f128 num);
+char	*ft_ftoa(t_f128 num, int precision);
 char	*base_conversion(t_u64 num, int tobase, int upper, int precision);
 
 #endif

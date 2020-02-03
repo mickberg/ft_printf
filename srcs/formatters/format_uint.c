@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 03:01:20 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:06:19 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void		format_uint(t_format *info, t_output *out, va_list ap)
 	info->flags &= ~(FLAG_ZERO * info->has_precision);
 	info->precision += !info->has_precision;
 	arg = number_argument_unsigned(info->length, ap);
-	argstr = base_conversion(arg, 10, 0, info->precision);
+	if (!(argstr = base_conversion(arg, 10, 0, info->precision)))
+		return ;
 	format_width(info, out, argstr, "");
+	free(argstr);
 }

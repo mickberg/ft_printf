@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 03:31:02 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:10:22 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void		format_ptr(t_format *info, t_output *out, va_list ap)
 	info->flags |= (FLAG_POUND);
 	info->precision += !info->has_precision;
 	arg = number_argument_unsigned(len_long, ap);
-	argstr = base_conversion(arg, 16, 0, info->precision);
+	if (!(argstr = base_conversion(arg, 16, 0, info->precision)))
+		return ;
 	format_width(info, out, argstr, "0x");
+	free(argstr);
 }

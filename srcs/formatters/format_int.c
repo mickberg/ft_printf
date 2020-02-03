@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 03:01:10 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:05:38 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		format_int(t_format *info, t_output *out, va_list ap)
 
 	// FETCH ARGUMENT
 	arg = number_argument_signed(info->length, ap);
-	argstr = base_conversion(ft_iabs(arg), 10, 0, info->precision);
+	if (!(argstr = base_conversion(ft_iabs(arg), 10, 0, info->precision)))
+		return ;
 	// define prefix
 	ft_memset(prefix, 0, 2);
 	if (info->flags & FLAG_SPACE)
@@ -36,4 +37,5 @@ void		format_int(t_format *info, t_output *out, va_list ap)
 		prefix[0] = '+';
 	// format width
 	format_width(info, out, argstr, prefix);
+	free(argstr);
 }

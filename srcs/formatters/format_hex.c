@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:09:38 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 03:40:45 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 20:08:19 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void		format_hex(t_format *info, t_output *out, va_list ap)
 	info->flags &= ~(FLAG_PLUS | FLAG_SPACE);
 	info->flags &= ~(FLAG_ZERO * info->has_precision);
 	info->precision += !info->has_precision;
-
 	arg = number_argument_unsigned(info->length, ap);
 	if (arg == 0)
 		info->flags &= ~FLAG_POUND;
-	argstr = base_conversion(arg, 16, info->specifier == spec_hexup, info->precision);
-
+	if (!(argstr = base_conversion(arg, 16, info->specifier == spec_hexup, info->precision)))
+		return ;
 	ft_memset(prefix, 0, 3);
 	if (info->flags & FLAG_POUND)
 	{
@@ -36,4 +35,5 @@ void		format_hex(t_format *info, t_output *out, va_list ap)
 			ft_strncpy(prefix, "0x", 2);
 	}
 	format_width(info, out, argstr, prefix);
+	free(argstr);
 }

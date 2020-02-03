@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/02/03 04:18:27 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/02/03 20:48:53 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC_FILES := \
 	formatters/format_char.c \
 	formatters/format_str.c \
 	formatters/format_perc.c \
+	formatters/format_bin.c \
 	formatters/format_width.c \
 	utils/number_arguments.c \
 	utils/number_utils.c \
