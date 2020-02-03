@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:22:26 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 23:08:55 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/02 23:41:37 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,27 @@ static int	base_len(t_u64 num, int tobase)
 {
 	int len;
 
-	len = 1;
-	while (num /= tobase)
+	len = 0;
+	while (num)
+	{
+		num /= tobase;
 		++len;
+	}
 	return (len);
 }
 
-char	*base_conversion(t_u64 num, int tobase, int upper)
+char	*base_conversion(t_u64 num, int tobase, int upper, int precision)
 {
-	int		declen;
 	int		baselen;
 	char	*res;
 
-	declen = ft_intlen(num);
-	baselen = base_len(num, tobase);
+	baselen = ft_max(base_len(num, tobase), precision);
 	res = ft_strnew(baselen);
-	if (num == 0)
-		res[0] = '0';
-	while (num != 0)
+	while (baselen--)
 	{
 		char c = to_alphnum(num % tobase, upper);
 		num /= tobase;
-		res[--baselen] = c;
+		res[baselen] = c;
 	}
 	return (res);
 }

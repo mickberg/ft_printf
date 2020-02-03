@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 21:29:22 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 03:01:50 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,13 @@
 
 void		format_char(t_format *info, t_output *out, va_list ap)
 {
-	t_64		arg;
-	int			intlen;
-	int			start;
-	char		*str;
+	char	arg;
+	char	argstr[2];
 
-	// unset flags
-	info->flags &= ~(FLAG_POUND | FLAG_ZERO | FLAG_PLUS | FLAG_SPACE);
-	// unset precision
-	info->precision = 0;
-	info->has_precision = 0;
-	// get argument
+	info->flags &= ~(FLAG_POUND | FLAG_PLUS | FLAG_SPACE);
+	info->precision = 1;
 	arg = number_argument_unsigned(len_char, ap);
-	str = ft_strnew(1);
-	str[0] = arg;
-
-	// arg length
-	intlen = 1;
-
-	// output length
-	out->len = ft_max(info->width, 1);
-	out->string = ft_strnew(out->len);
-
-	// start offset
-	start = info->width - 1;
-	if (info->flags & FLAG_MINUS)
-		start = 0;
-
-	// format output
-	format_int_width(info, out);
-	ft_strncpy(out->string + start, str, intlen);
+	ft_memset(argstr, '\0', 2);
+	argstr[0] = arg;
+	format_width(info, out, argstr, "");
 }

@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/01/27 23:14:44 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/02/03 04:18:27 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,6 @@ SRC_FILES := \
 	parse/parse_specifier.c \
 	parse/parse_number.c \
 	formatters/format_router.c \
-	formatters/format_width.c \
-	formatters/format_precision.c \
 	formatters/format_int.c \
 	formatters/format_uint.c \
 	formatters/format_hex.c \
@@ -46,6 +44,7 @@ SRC_FILES := \
 	formatters/format_char.c \
 	formatters/format_str.c \
 	formatters/format_perc.c \
+	formatters/format_width.c \
 	utils/number_arguments.c \
 	utils/number_utils.c \
 	utils/base_conversion.c
@@ -58,7 +57,7 @@ all: $(NAME)
 $(FTLIB):
 	@make -C $(LIB_DIR)
 
-$(NAME): $(OBJS) $(FTLIB)
+$(NAME): $(OBJS) $(FTLIB) $(INC_DIR)ft_printf.h $(INC_DIR)ft_printf_types.h
 	@cp $(FTLIB) ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
@@ -68,7 +67,7 @@ test: $(NAME) tests/main.c
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -g -o $@ -I ${INC_DIR} -I ${LIB_DIR}
+	@$(CC) $(CFLAGS) -c $< -g -o $@ -I ${INC_DIR} -I ${LIB_DIR}
 
 clean:
 	@rm -rf $(OBJ_DIR)

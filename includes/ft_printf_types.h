@@ -6,12 +6,14 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 07:54:13 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/24 22:15:49 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 04:41:07 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_TYPES_H
 # define FT_PRINTF_TYPES_H
+
+#include <stdlib.h>
 
 /*
 ** structs and enum typedefs
@@ -26,7 +28,6 @@ typedef enum e_spec			t_spec;
 */
 typedef long long			t_64;
 typedef unsigned long long	t_u64;
-typedef long double			t_f128;
 
 /*
 ** Flags, defined in bits because not all flags are exlusive
@@ -48,12 +49,11 @@ enum						e_length
 	len_long,
 	len_longlong,
 	len_longdouble,
-	len_ptr
 };
 
 /*
 ** specifiers
-*/ 
+*/
 enum						e_spec
 {
 	spec_none,
@@ -86,6 +86,7 @@ struct						s_output
 {
 	char		*string;
 	size_t		len;
+	size_t		arglen;
 };
 
 #endif

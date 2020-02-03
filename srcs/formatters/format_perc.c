@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 11:56:31 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/24 12:03:27 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/03 03:02:26 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void		format_perc(t_format *info, t_output *out, va_list ap)
 {
-	(void)info;
+	char	*argstr;
+
 	(void)ap;
-	out->len = 1;
-	out->string = ft_strnew(1);
-	out->string[0] = '%';
+	argstr = "%";
+	info->precision = 0;
+	format_width(info, out, argstr, "");
 }
