@@ -6,13 +6,13 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:06:19 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 20:11:00 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		format_uint(t_format *info, t_output *out, va_list ap)
+void	format_uint(t_format *info, t_output *out, va_list ap)
 {
 	t_u64		arg;
 	char		*argstr;

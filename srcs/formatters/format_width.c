@@ -6,13 +6,13 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:45:01 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 21:00:21 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 19:53:45 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		format_width(t_format *info, t_output *out, char *argstr, char *prefix)
+void	format_width(t_format *info, t_output *out, char *argstr, char *prefix)
 {
 	size_t	pos;
 	size_t	arglen;
@@ -25,11 +25,8 @@ void		format_width(t_format *info, t_output *out, char *argstr, char *prefix)
 		arglen = 1;
 	out->len = arglen + prefix_len;
 	out->len = ft_max(out->len, info->width);
-	if (!(out->string = ft_strnew(out->len)))
-	{
-		out->len = 0;
+	if (!(out->string = ft_strnew(out->len)) && (out->len = 0) == 0)
 		return ;
-	}
 	width_char = 48 - !(info->flags & FLAG_ZERO) * 16;
 	pos = (out->len - arglen);
 	if (info->flags & FLAG_MINUS)

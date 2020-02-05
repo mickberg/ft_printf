@@ -6,13 +6,13 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 22:17:04 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 20:02:43 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		format_float(t_format *info, t_output *out, va_list ap)
+void	format_float(t_format *info, t_output *out, va_list ap)
 {
 	t_f128	arg;
 	char	*argstr;

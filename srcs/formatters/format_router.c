@@ -6,13 +6,13 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 17:47:34 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:48:11 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 20:10:05 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		(*format_router(t_format *info))(t_format*, t_output*, va_list ap)
+void	(*format_router(t_format *info))(t_format*, t_output*, va_list ap)
 {
 	void	(*funcs[256])(t_format*, t_output*, va_list ap);
 
