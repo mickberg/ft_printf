@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/02/04 19:13:24 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/02/05 18:08:00 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ SRC_FILES := \
 	utils/number_utils.c \
 	utils/base_conversion.c
 
+HDR_FILES := ft_printf.h ft_printf_types.h
+
+INCS := $(addprefix $(INC_DIR), $(HDR_FILES));
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
 OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
@@ -58,13 +61,10 @@ all: $(NAME)
 $(FTLIB):
 	@make -C $(LIB_DIR)
 
-$(NAME): $(OBJS) $(FTLIB) $(INC_DIR)ft_printf.h $(INC_DIR)ft_printf_types.h
+$(NAME): $(OBJS) $(FTLIB) $(INCS)
 	@cp $(FTLIB) ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-
-test: $(NAME) tests/main.c
-	$(CC) $(CFLAGS) -o printf_test tests/main.c -I$(LIB_DIR) -I $(INC_DIR) -L./ -lftprintf
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)

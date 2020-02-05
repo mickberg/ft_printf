@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:56:35 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 14:16:20 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 18:33:48 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,6 @@ static void	format_argument(const char *format, t_output *out, int *pos, va_list
 	if (info.flags & FLAG_MINUS)
 		info.flags &= ~FLAG_ZERO;
 	format_router(&info)(&info, out, ap);
-}
-
-static size_t	handle_write(t_output *out)
-{
-	write(1, out->string, out->len);
-	if (out->string != NULL)
-		free(out->string);
-	return (out->len);
 }
 
 int			ft_printf(const char *format, ...)
@@ -59,7 +51,10 @@ int			ft_vprintf(const char *format, va_list ap)
 			++pos;
 			ft_bzero(&out, sizeof(t_output));
 			format_argument(format, &out, &pos, ap);
-			out_len += handle_write(&out);
+			write(1, out.string, out.len);
+			if (out.string != NULL)
+				free(out.string);
+			out_len += out.len;
 		}
 		else
 		{
