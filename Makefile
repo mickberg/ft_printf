@@ -6,7 +6,7 @@
 #    By: mberglun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/02 17:10:30 by mberglun          #+#    #+#              #
-#    Updated: 2020/02/05 18:08:00 by mikaelber        ###   ########.fr        #
+#    Updated: 2020/02/05 19:18:27 by mikaelber        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ INCS := $(addprefix $(INC_DIR), $(HDR_FILES));
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
 OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
+.PHONY: clean fclean re
+
 all: $(NAME)
 
 $(FTLIB):
@@ -66,14 +68,16 @@ $(NAME): $(OBJS) $(FTLIB) $(INCS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+$(OBJS): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -g -o $@ -I ${INC_DIR} -I ${LIB_DIR}
+	@$(CC) $(CFLAGS) -c $< -g -o $@ -I $(INC_DIR) -I $(LIB_DIR)
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@make -C $(LIB_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@make -C $(LIB_DIR) fclean
 
 re: fclean all
