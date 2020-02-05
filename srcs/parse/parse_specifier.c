@@ -6,13 +6,13 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:22:28 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:49:34 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 19:37:00 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_spec		get_spec(char c)
+static t_spec	get_spec(char c)
 {
 	char	specs[256];
 
@@ -32,7 +32,7 @@ t_spec		get_spec(char c)
 	return (specs[(int)c]);
 }
 
-void		parse_specifier(t_format *info, const char *format, int *pos)
+void			parse_specifier(t_format *info, const char *format, int *pos)
 {
 	info->specifier = get_spec(*(char*)(format + (*pos)));
 	if (info->specifier)
