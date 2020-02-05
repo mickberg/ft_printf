@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 07:54:13 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:48:32 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/04 16:27:34 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ struct						s_format
 	t_spec		specifier;
 };
 
+/*
+** Output struct
+*/
 struct						s_output
 {
 	char		*string;

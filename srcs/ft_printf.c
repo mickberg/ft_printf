@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:56:35 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:24:25 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 14:16:20 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,21 @@ static size_t	handle_write(t_output *out)
 
 int			ft_printf(const char *format, ...)
 {
-	int			pos;
 	va_list		ap;
+	size_t		len;
+
+	va_start(ap, format);
+	len = ft_vprintf(format, ap);
+	va_end(ap);
+	return (len);
+}
+
+int			ft_vprintf(const char *format, va_list ap)
+{
+	int			pos;
 	t_output	out;
 	size_t		out_len;
 
-	va_start(ap, format);
 	pos = 0;
 	out_len = 0;
 	while (format[pos] != '\0')

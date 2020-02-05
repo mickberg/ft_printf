@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 21:54:40 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/04 16:43:56 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# include <limits.h>
-# include <stdio.h>
-
 /*
 ** Core
 */
 int			ft_printf(const char *format, ...);
+int			ft_vprintf(const char *format, va_list ap);
 
 /*
 ** Parsing
