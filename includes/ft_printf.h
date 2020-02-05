@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 18:50:41 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 19:02:45 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 int		ft_printf(const char *format, ...);
 int		ft_vprintf(const char *format, va_list ap);
 
-void	parse_format(t_format *info, const char *format, int *pos, va_list ap);
+void	parse_format(const char *format, t_output *out, int *pos, va_list ap);
 void	parse_flags(t_format *info, const char *format, int *pos);
 void	parse_width(t_format *info, const char *format, int *pos, va_list ap);
 void	parse_precision(t_format *info, const char *format, int *pos, va_list ap);

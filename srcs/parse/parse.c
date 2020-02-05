@@ -6,17 +6,25 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:25:58 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 15:41:56 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 19:02:33 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		parse_format(t_format *info, const char *format, int *pos, va_list ap)
+void	parse_format(const char *format, t_output *out, int *pos, va_list ap)
 {
-	parse_flags(info, format, pos);
-	parse_width(info, format, pos, ap);
-	parse_precision(info, format, pos, ap);
-	parse_length(info, format, pos);
-	parse_specifier(info, format, pos);
+	t_format	info;
+
+	ft_bzero(&info, sizeof(t_format));
+	parse_flags(&info, format, pos);
+	parse_width(&info, format, pos, ap);
+	parse_precision(&info, format, pos, ap);
+	parse_length(&info, format, pos);
+	parse_specifier(&info, format, pos);
+	if (info.specifier == spec_none)
+		return ;
+	if (info.flags & FLAG_MINUS)
+		info.flags &= ~FLAG_ZERO;
+	format_router(&info)(&info, out, ap);
 }
