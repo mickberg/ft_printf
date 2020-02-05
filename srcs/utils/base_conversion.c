@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:22:26 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 20:24:48 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 20:12:28 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	base_len(t_u64 num, int tobase)
 	return (len);
 }
 
-char	*base_conversion(t_u64 num, int tobase, int upper, int precision)
+char		*base_conversion(t_u64 num, int tobase, int upper, int precision)
 {
 	int		baselen;
 	char	*res;

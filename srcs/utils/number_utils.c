@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:08:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 22:42:32 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/05 20:14:54 by mikaelber        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ char	*ft_ftoa(t_f128 num, int precision, int print_p)
 {
 	int		strlen;
 	char	*numstr;
+	char	*decpos;
 
 	strlen = ft_intlen(num) + precision;
 	if (precision || print_p)
 		++strlen;
 	if (!(numstr = ft_strnew(strlen)))
 		return (NULL);
-	num += decimals_to_str(num - (t_u64)num, numstr + (strlen - precision), precision);
+	decpos = numstr + (strlen - precision);
+	num += decimals_to_str(num - (t_u64)num, decpos, precision);
 	numstr[0] = '0';
 	ft_itos((t_u64)num, numstr);
 	if (precision || print_p)
