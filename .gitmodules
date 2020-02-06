@@ -1,6 +1,0 @@
-[submodule "libft"]
-	path = libft
-	url = https://github.com/mickberg/libft
-[submodule "42tests"]
-	path = 42tests
-	url = https://github..com/mickberg/42tests.git
