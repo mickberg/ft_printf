@@ -6,15 +6,15 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 17:47:34 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 20:10:05 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:09:48 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	(*format_router(t_format *info))(t_format*, t_output*, va_list ap)
+void	format_router(t_format *info, t_output *out, va_list ap)
 {
-	void	(*funcs[256])(t_format*, t_output*, va_list ap);
+	void	(*funcs[256])(t_format*, t_output*, va_list);
 
 	funcs[0] = NULL;
 	funcs[1] = format_int;
@@ -28,5 +28,6 @@ void	(*format_router(t_format *info))(t_format*, t_output*, va_list ap)
 	funcs[9] = format_ptr;
 	funcs[10] = format_perc;
 	funcs[11] = format_bin;
-	return (funcs[info->specifier]);
+	if (funcs[info->specifier])
+		(funcs[info->specifier])(info, out, ap);
 }

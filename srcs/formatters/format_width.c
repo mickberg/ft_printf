@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:45:01 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 19:53:45 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:22:59 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	format_width(t_format *info, t_output *out, char *argstr, char *prefix)
 	arglen = ft_strlen(argstr);
 	if (info->specifier == spec_char)
 		arglen = 1;
-	out->len = arglen + prefix_len;
-	out->len = ft_max(out->len, info->width);
-	if (!(out->string = ft_strnew(out->len)) && (out->len = 0) == 0)
+	out->len = ft_max(arglen + prefix_len, info->width);
+	if (!(out->string = ft_strnew(out->len)) &&
+			(out->len = 0) == 0)
 		return ;
 	width_char = 48 - !(info->flags & FLAG_ZERO) * 16;
 	pos = (out->len - arglen);

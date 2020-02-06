@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 09:02:41 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/01/27 23:05:38 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:14:32 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_flags(t_format *info, const char *format, int *pos)
 		else if (*str == ' ')
 			info->flags |= FLAG_SPACE;
 		else
-			break;
+			break ;
 		(*pos)++;
 		++str;
 	}

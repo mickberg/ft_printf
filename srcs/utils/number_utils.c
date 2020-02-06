@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:08:36 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 20:14:54 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:22:38 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ static int	decimals_to_str(t_f128 num, char *dest, int precision)
 {
 	t_u64	dnum;
 	char	*str;
+	t_u64	decimals;
 
 	dnum = num * ft_pow(10, precision + 1);
 	if ((int)(dnum % 10) >= 5)
 		dnum += 10;
 	dnum /= 10;
-	str = base_conversion(dnum % (t_u64)ft_pow(10, precision), 10, 0, precision);
+	decimals = dnum % (t_u64)ft_pow(10, precision);
+	str = base_conversion(decimals, 10, 0, precision);
 	if (!str)
 		return (0);
 	ft_strncpy(dest, str, precision);
@@ -58,7 +60,7 @@ static int	decimals_to_str(t_f128 num, char *dest, int precision)
 	return (dnum / (t_u64)ft_pow(10, precision));
 }
 
-char	*ft_ftoa(t_f128 num, int precision, int print_p)
+char		*ft_ftoa(t_f128 num, int precision, int print_p)
 {
 	int		strlen;
 	char	*numstr;

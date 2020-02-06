@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:10:25 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 19:02:45 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:10:06 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		ft_vprintf(const char *format, va_list ap);
 void	parse_format(const char *format, t_output *out, int *pos, va_list ap);
 void	parse_flags(t_format *info, const char *format, int *pos);
 void	parse_width(t_format *info, const char *format, int *pos, va_list ap);
-void	parse_precision(t_format *info, const char *format, int *pos, va_list ap);
+void	parse_precision(t_format *info, const char *format, int *pos, \
+		va_list ap);
 void	parse_length(t_format *info, const char *format, int *pos);
 void	parse_specifier(t_format *info, const char *format, int *pos);
 void	parse_number(const char *format, int *pos, int *num);
@@ -33,7 +34,7 @@ t_64	number_argument_signed(t_len lflag, va_list ap);
 t_u64	number_argument_unsigned(t_len lflag, va_list ap);
 t_f128	float_argument_signed(t_len lflag, va_list ap);
 
-void	(*format_router(t_format *info))(t_format*, t_output*, va_list);
+void	format_router(t_format *info, t_output *out, va_list ap);
 void	format_width(t_format *info, t_output *out, char *argstr, char *prefix);
 
 void	format_int(t_format *info, t_output *out, va_list ap);

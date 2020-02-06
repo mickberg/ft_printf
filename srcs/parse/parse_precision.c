@@ -6,13 +6,14 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 09:25:42 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/03 22:04:04 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:15:36 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_precision(t_format *info, const char *format, int *pos, va_list ap)
+void	parse_precision(t_format *info, const char *format, int *pos, \
+		va_list ap)
 {
 	int		arg;
 
@@ -20,7 +21,7 @@ void	parse_precision(t_format *info, const char *format, int *pos, va_list ap)
 	{
 		++(*pos);
 		info->has_precision = 1;
-		if (*(format + *pos)  == '*')
+		if (*(format + *pos) == '*')
 		{
 			arg = (int)va_arg(ap, int);
 			if (arg < 0)

@@ -6,22 +6,22 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 07:54:13 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 18:50:00 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:25:16 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_TYPES_H
 # define FT_PRINTF_TYPES_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 typedef struct s_format		t_format;
 typedef struct s_output		t_output;
 typedef enum e_length		t_len;
 typedef enum e_spec			t_spec;
 typedef long long			t_64;
-typedef unsigned long long	t_u64;
 typedef long double			t_f128;
+typedef unsigned long long	t_u64;
 
 # define FLAG_MINUS			0x01
 # define FLAG_PLUS			0x02

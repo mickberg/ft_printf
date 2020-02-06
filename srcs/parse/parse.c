@@ -6,7 +6,7 @@
 /*   By: mikaelberglund <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:25:58 by mikaelber         #+#    #+#             */
-/*   Updated: 2020/02/05 19:02:33 by mikaelber        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:08:28 by mberglun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	parse_format(const char *format, t_output *out, int *pos, va_list ap)
 		return ;
 	if (info.flags & FLAG_MINUS)
 		info.flags &= ~FLAG_ZERO;
-	format_router(&info)(&info, out, ap);
+	format_router(&info, out, ap);
 }
